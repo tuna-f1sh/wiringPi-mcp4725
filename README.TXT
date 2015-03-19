@@ -1,3 +1,14 @@
+MD4725 Support
+==============
+
+build and run in the examples directory with:
+
+```
+make dac
+./dac 4095 #output Vdd
+./dac #output repeating sine wave```
+
+See /examples/dac.c for how to use driver
 
 wiringPi README
 ===============

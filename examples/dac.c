@@ -14,7 +14,7 @@
 #include "mcp4725.h"
 
 int main(int argc, char *argv[]) {
-  int output, fd, i;
+  int output, i;
 
   if (argc == 2) {
     output = atoi(argv[1]);
