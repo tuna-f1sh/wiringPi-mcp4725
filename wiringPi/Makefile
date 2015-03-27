@@ -52,6 +52,7 @@ SRC	=	wiringPi.c						\
 		max31855.c max5322.c					\
 		sn3218.c						\
 		mcp4725.c						\
+		ads1115.c						\
 		drcSerial.c						\
 		wpiExtensions.c
 
@@ -67,6 +68,7 @@ HEADERS =	wiringPi.h						\
 		max31855.h max5322.h					\
 		sn3218.h						\
 		mcp4725.h						\
+		ads1115.h						\
 		drcSerial.h						\
 		wpiExtensions.h 
 

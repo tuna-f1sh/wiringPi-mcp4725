@@ -39,6 +39,7 @@ SRC	=	blink.c blink8.c blink12.c					\
 		blink12drcs.c							\
 		pwm.c								\
 		dac.c								\
+		ads1115_read.c								\
 		speed.c wfi.c isr.c isr-osc.c					\
 		lcd.c lcd-adafruit.c clock.c					\
 		nes.c								\
@@ -57,6 +58,10 @@ all:
 	@echo ""
 
 really-all:	$(BINS)
+
+ads:	ads1115_read.o
+	@echo [link]
+	@$(CC) -o $@ ads1115_read.o $(LDFLAGS) $(LDLIBS)
 
 dac:	dac.o
 	@echo [link]
