@@ -25,8 +25,8 @@ static int myAnalogRead(struct wiringPiNodeStruct *node, int pin) {
                     ADS1015_REG_CONFIG_CPOL_ACTVLOW | // Alert/Rdy active low   (default val)
                     ADS1015_REG_CONFIG_CMODE_TRAD   | // Traditional comparator (default val)
                     ADS1115_REG_CONFIG_DR_860SPS   | // 860 samples per second (max)
-                    //ADS1015_REG_CONFIG_MODE_SINGLE;   // Single-shot mode (default)
-                    ADS1015_REG_CONFIG_MODE_CONTIN;   // Continuous mode
+                    ADS1015_REG_CONFIG_MODE_SINGLE;   // Single-shot mode (default)
+                    //ADS1015_REG_CONFIG_MODE_CONTIN;   // Continuous mode (doesn't work with more than one channel)
   // Set PGA/voltage range
   config |= ADS1015_REG_CONFIG_PGA_4_096V;
 
@@ -48,14 +48,14 @@ static int myAnalogRead(struct wiringPiNodeStruct *node, int pin) {
   }
 
   // Set 'start single-conversion' bit
-  //config |= ADS1015_REG_CONFIG_OS_SINGLE;
+  config |= ADS1015_REG_CONFIG_OS_SINGLE;
   
   // Sent the config data in the right order
   config = ((config >> 8) & 0x00FF) | ((config << 8) & 0xFF00);
   wiringPiI2CWriteReg16(node->fd, ADS1015_REG_POINTER_CONFIG, config);
  
   // Wait for conversion to complete
-  //delay(2); // (1/SPS rounded up)
+  delay(2); // (1/SPS rounded up)
 
   wiringPiI2CWrite(node->fd, ADS1015_REG_POINTER_CONVERT);
   data[0] = wiringPiI2CRead(node->fd);
